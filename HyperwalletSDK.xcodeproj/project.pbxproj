@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,8 +47,7 @@
 		980B9AE7251C0A2400653D1C /* PrepaidCardResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 980B9AE5251C052600653D1C /* PrepaidCardResponse.json */; };
 		980C15DB2273BF91004C60D6 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 980C15DA2273BF91004C60D6 /* CHANGELOG.md */; };
 		980C15F12273D1FA004C60D6 /* ListBankCardResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = DBCA37A6225D6D1700CD4137 /* ListBankCardResponse.json */; };
-		980E79402613B68E00F0834B /* Hippolyte.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8C499225E014E30062A440 /* Hippolyte.xcframework */; };
-		98101DC42238A2F000BA04CA /* HyperwalletSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98101DBA2238A2F000BA04CA /* HyperwalletSDK.framework */; };
+		A8E93F5726EBBEAF00A31CEA /* Hippolyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E93F5626EBBEAF00A31CEA /* Hippolyte.framework */; };
 		B062E353E292414C07C70355 /* HyperwalletPaperCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062EB9A428EB097C6B5B4FC /* HyperwalletPaperCheckTests.swift */; };
 		B062E601D8A9A6E7FCC498F7 /* PaperCheckErrorResponseWithMissingStateProvince.json in Resources */ = {isa = PBXBuildFile; fileRef = B062EC1CDD525FA26E0A7ED3 /* PaperCheckErrorResponseWithMissingStateProvince.json */; };
 		B062EA1444CB4994B8D9AA73 /* ListPaperCheckResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = B062EB32004F6CDC55028D37 /* ListPaperCheckResponse.json */; };
@@ -205,6 +204,7 @@
 		98101DBE2238A2F000BA04CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98101DC32238A2F000BA04CA /* HyperwalletSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HyperwalletSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98101DCA2238A2F000BA04CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8E93F5626EBBEAF00A31CEA /* Hippolyte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Hippolyte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B062E2EA3710B0D9432C055C /* ListPrepaidCardBalancesResponseSuccess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ListPrepaidCardBalancesResponseSuccess.json; sourceTree = "<group>"; };
 		B062E470A67F25DDA9FAA711 /* PaperCheckIndividualResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaperCheckIndividualResponse.json; sourceTree = "<group>"; };
 		B062EB32004F6CDC55028D37 /* ListPaperCheckResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ListPaperCheckResponse.json; sourceTree = "<group>"; };
@@ -317,8 +317,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				980E79402613B68E00F0834B /* Hippolyte.xcframework in Frameworks */,
-				98101DC42238A2F000BA04CA /* HyperwalletSDK.framework in Frameworks */,
+				A8E93F5726EBBEAF00A31CEA /* Hippolyte.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +697,7 @@
 		DBE45605225F3D1A000C9A0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8E93F5626EBBEAF00A31CEA /* Hippolyte.framework */,
 				FD8C499225E014E30062A440 /* Hippolyte.xcframework */,
 				DB2A3B0D2261D4260049F891 /* Hippolyte.framework */,
 			);
@@ -1031,7 +1031,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1122,7 +1121,6 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyperwallet.ios.HyperwalletSDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1171,10 +1169,6 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1198,10 +1192,6 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
