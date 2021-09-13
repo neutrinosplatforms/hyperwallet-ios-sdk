@@ -69,26 +69,7 @@ public final class Hyperwallet: NSObject {
     /// it tries to fetch the configuration object again and returns it else error
     ///
     /// - Parameter completion: the callback handler of responses from the Hyperwallet platform
-    public func getConfiguration() async throws -> Configuration? {
-        let completion = {(authenticationToken: String?, error: HyperwalletErrorType?) in
-            guard error == nil else {
-                completion(nil, ErrorTypeHelper.authenticationError(
-                    message: "Error occured while retrieving authentication token",
-                    for: error as? HyperwalletAuthenticationErrorType ?? HyperwalletAuthenticationErrorType
-                        .unexpected("Authentication token cannot be retrieved"))
-                )
-                return
-            }
-            do {
-                let configuration = try AuthenticationTokenDecoder.decode(from: authenticationToken)
-                self.httpTransaction.configuration = configuration
-                completion(configuration, nil)
-            } catch {
-                if let error = error as? HyperwalletErrorType {
-                    completion(nil, error)
-                }
-            }
-        }
+    public func getConfiguration(completion: @escaping (Configuration?, HyperwalletErrorType?) -> Void ) {
         if let configuration = httpTransaction.configuration {
             completion(configuration, nil)
         } else {
