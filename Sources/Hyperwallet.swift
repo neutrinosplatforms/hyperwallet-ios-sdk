@@ -69,12 +69,45 @@ public final class Hyperwallet: NSObject {
     /// it tries to fetch the configuration object again and returns it else error
     ///
     /// - Parameter completion: the callback handler of responses from the Hyperwallet platform
+    @available(*, deprecated, message: "Prefer async alternative instead")
     public func getConfiguration(completion: @escaping (Configuration?, HyperwalletErrorType?) -> Void ) {
+        Task {
+            do {
+                let result = try await getConfiguration()
+                completion(result, nil)
+            } catch {
+                completion(nil, (error as! HyperwalletErrorType))
+            }
+        }
+    }
+    
+    
+    public func getConfiguration() async throws -> Configuration {
         if let configuration = httpTransaction.configuration {
-            completion(configuration, nil)
+            return configuration
         } else {
-            provider.retrieveAuthenticationToken(
-                completionHandler: retrieveAuthenticationTokenResponseHandler(completion: completion))
+            return try await withCheckedThrowingContinuation { continuation in
+                let completion = {(authenticationToken: String?, error: Error?) in
+                    guard error == nil else {
+                        continuation.resume(throwing: ErrorTypeHelper.authenticationError(
+                            message: "Error occured while retrieving authentication token",
+                            for: error as? HyperwalletAuthenticationErrorType ?? HyperwalletAuthenticationErrorType
+                                .unexpected("Authentication token cannot be retrieved"))
+                        )
+                        return
+                    }
+                    do {
+                        let configuration = try AuthenticationTokenDecoder.decode(from: authenticationToken)
+                        self.httpTransaction.configuration = configuration
+                        continuation.resume(returning: configuration)
+                    } catch {
+                        if let error = error as? HyperwalletErrorType {
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                }
+                provider.retrieveAuthenticationToken(completionHandler: completion)
+            }
         }
     }
 
