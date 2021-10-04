@@ -130,6 +130,24 @@ public final class Hyperwallet: NSObject {
                                     completionHandler: completion)
     }
 
+    /// Returns the `HyperwalletUser` for the User associated with the new user
+    ///
+    /// - Parameters:
+    ///   - user: the `HyperwalletUser` to be created
+    /// - Returns: Returns the newly created `HyperwalletUser`.
+    public func createUser(user: HyperwalletUser) async throws -> HyperwalletUser? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(user: HyperwalletUser?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: user)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get, urlPath: "users/%@", payload: user, completionHandler: completion)
+        }
+    }
+    
     /// Creates a `HyperwalletBankAccount` for the User associated with the authentication token returned from
     /// `HyperwalletAuthenticationTokenProvider.retrieveAuthenticationToken(_ : @escaping CompletionHandler)`.
     ///
