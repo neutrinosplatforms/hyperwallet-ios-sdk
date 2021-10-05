@@ -449,6 +449,7 @@ public class HyperwalletUser: NSObject, Codable {
     public final class Builder {
         private var storage = [String: AnyCodable]()
 
+        public init() {}
         /// Sets the user's street address.
         ///
         /// - Parameter addressLine1: The user's street address
