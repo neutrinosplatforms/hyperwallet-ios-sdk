@@ -21,7 +21,12 @@ import UIKit
 /// Representation of the Hyperwallet's user.
 @objcMembers
 public class HyperwalletUser: NSObject, Codable {
+    
     private var storage = [String: AnyCodable]()
+    
+    public var userStorage: [String: Any] {
+        return storage
+    }
 
     /// Representation of the user field type.
     public enum UserField: String {
