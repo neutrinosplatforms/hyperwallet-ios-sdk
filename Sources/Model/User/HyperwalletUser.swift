@@ -454,7 +454,31 @@ public class HyperwalletUser: NSObject, Codable {
     public final class Builder {
         private var storage = [String: AnyCodable]()
 
-        public init() {}
+        public init(){}
+        public init(clientUserId: String,
+                    profileType: ProfileType,
+                    programToken: String) {
+            storage[UserField.clientUserId.rawValue] = AnyCodable(value: clientUserId)
+            storage[UserField.profileType.rawValue] = AnyCodable(value: profileType.rawValue)
+            storage[UserField.programToken.rawValue] = AnyCodable(value: programToken)
+        }
+        
+        /// Sets the user's ID.
+        ///
+        /// - Parameter clientUserId: The user's ID
+        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
+        public func clientUserId(_ clientUserId: String) -> Builder {
+            setField(key: UserField.clientUserId, value: clientUserId)
+        }
+        
+        /// Sets the user's profile type.
+        ///
+        /// - Parameter profileType: The user's profile type
+        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
+        public func profileType(_ profileType: String) -> Builder {
+            setField(key: UserField.profileType, value: profileType)
+        }
+        
         /// Sets the user's street address.
         ///
         /// - Parameter addressLine1: The user's street address
