@@ -619,7 +619,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// Sets the user's country.
         ///
         /// - Parameter country: The user's country.
-        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
+        /// - Returns: a self reference of `HyperwalletUser.Builder` instance..
         public func country(_ country: String) -> Builder {
             setField(key: UserField.country, value: country)
         }
