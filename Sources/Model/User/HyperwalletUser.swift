@@ -675,7 +675,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// - Parameter firstName: The user's first name.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
         public func firstName(_ firstName: String) -> Builder {
-            setField(key: UserField.employerId, value: firstName)
+            setField(key: UserField.firstName, value: firstName)
         }
 
         /// Sets the user's gender.
@@ -691,7 +691,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// - Parameter governmentId: The user's government ID number, such as a Social Security Number.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
         public func governmentId(_ governmentId: String) -> Builder {
-            setField(key: UserField.employerId, value: governmentId)
+            setField(key: UserField.governmentId, value: governmentId)
         }
 
         /// Sets the user's government ID type.
@@ -771,7 +771,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// - Parameter programToken: The unique identifier for the program to which the user will belong.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
         public func programToken(_ programToken: String) -> Builder {
-            setField(key: UserField.postalCode, value: programToken)
+            setField(key: UserField.programToken, value: programToken)
         }
 
         /// Sets the field value based on the `UserField`
