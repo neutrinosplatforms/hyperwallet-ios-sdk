@@ -144,7 +144,7 @@ public final class Hyperwallet: NSObject {
                     c.resume(returning: user)
                 }
             }
-            httpTransaction.performRest(httpMethod: .post, urlPath: "users", payload: user, completionHandler: completion)
+            httpTransaction.performRest(httpMethod: .post, urlPath: "users", payload: user, isUnauthenticated: true, completionHandler: completion)
         }
     }
     

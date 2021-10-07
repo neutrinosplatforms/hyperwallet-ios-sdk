@@ -49,4 +49,6 @@ import Foundation
     ///
     /// - Parameter completionHandler: A completion handler for authentication tokens
     func retrieveAuthenticationToken(completionHandler: @escaping CompletionHandler)
+    
+    var encodedCredentials: String { get }
 }

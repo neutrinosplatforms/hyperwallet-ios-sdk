@@ -67,28 +67,13 @@ internal enum TransactionType {
         guard let url = addQueryIfRequired(baseURL, query) else {
             throw ErrorTypeHelper.invalidUrl()
         }
-        
-        let bodyData = """
-{
-    "email":"tom@classify.app",
-    "stateProvince":"Punjab",
-    "dateOfBirth":"1988-12-01",
-    "firstName":"Tom GGGGGG",
-    "lastName":"Goddard",
-    "profileType":"INDIVIDUAL",
-    "clientUserId":"ab-6546531315",
-    "city":"Mohali",
-    "postalCode":"160062",
-    "country":"IN",
-    "addressLine1":"Sector 62",
-    "programToken":"prg-44f43e9b-1824-47e7-96d4-0b2f2a9609f2"
-}
-""".data(using: .utf8)
-        
-        
-        
         var request = URLRequest(url: url)
-        request.addValue("Bearer " + configuration.authorization, forHTTPHeaderField: "Authorization")
+        if configuration.isUnauthenticated {
+            request.addValue(configuration.authorization, forHTTPHeaderField: "Authorization")
+        } else {
+            request.addValue("Bearer " + configuration.authorization, forHTTPHeaderField: "Authorization")
+        }
+        
         request.httpMethod = method.rawValue
         if httpBody != nil, (method == .post || method == .put) {
             let encoder = JSONEncoder()

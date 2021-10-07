@@ -20,6 +20,7 @@ import Foundation
 
 /// Configuration object retrieved on successful authentication
 public struct Configuration: Codable {
+    
     let createOn: Double
     let clientToken: String
     let expiresOn: Double
@@ -60,5 +61,15 @@ public struct Configuration: Codable {
     func isTokenExpired() -> Bool {
         let tokenLifespan = expiresOn - createOn
         return ProcessInfo.processInfo.systemUptime - createOnBootTime >= tokenLifespan
+    }
+    
+    var isUnauthenticated: Bool {
+        return userToken.isEmpty
+    }
+}
+
+extension Configuration {
+    init(restUrl: String, authorization: String) {
+        self.init(createOn: 0.0, clientToken: "", expiresOn: 0.0, graphQlUrl: "", restUrl: restUrl, environment: nil, insightsUrl: nil, issuer: "", userToken: "", programModel: nil, authorization: authorization)
     }
 }
