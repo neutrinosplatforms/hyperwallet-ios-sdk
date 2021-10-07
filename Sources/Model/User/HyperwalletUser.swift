@@ -632,7 +632,7 @@ public class HyperwalletUser: NSObject, Codable {
             setField(key: UserField.countryOfBirth, value: countryOfBirth)
         }
 
-        /// Sets the user's country of citizenship or nationality.
+        /// Sets the user's country of citizenship or nationality...
         ///
         /// - Parameter countryOfNationality: The user's country of citizenship or nationality.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
