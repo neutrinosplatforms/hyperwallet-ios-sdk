@@ -615,14 +615,6 @@ public class HyperwalletUser: NSObject, Codable {
         public func city(_ city: String) -> Builder {
             setField(key: UserField.city, value: city)
         }
-
-        /// Sets the user's clientUserId.
-        ///
-        /// - Parameter cllientUserId: The user's clientID.
-        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
-        public func clientUserId(_ clientUserId: String) -> Builder {
-            setField(key: UserField.clientUserId, value: clientUserId)
-        }
         
         /// Sets the user's country.
         ///
