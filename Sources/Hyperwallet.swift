@@ -517,6 +517,22 @@ public final class Hyperwallet: NSObject {
                                     payload: "",
                                     completionHandler: completion)
     }
+    
+    public func getPayPalAccount(transferMethodToken: String) async throws -> HyperwalletPayPalAccount? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = { (account: HyperwalletPayPalAccount?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: account)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "users/%@/paypal-accounts/\(transferMethodToken)",
+                                        payload: "",
+                                        completionHandler: completion)
+        }
+    }
 
     /// Returns the `HyperwalletPrepaidCard` linked to the transfer method token specified, or nil if none exists.
     ///
