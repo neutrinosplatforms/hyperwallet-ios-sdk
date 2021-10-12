@@ -84,18 +84,6 @@ public struct HyperwalletPayment: Codable {
         private let programToken: String
         private var purpose: String?
         
-
-        /// Creates a new instance of the `HyperwalletPayment.Builder` based on the required parameters to create
-        /// a transfer.
-        ///
-        /// - Parameters:
-        ///   - clientTransferId: A client defined transfer identifier.
-        ///                       This is the unique ID assigned to the transfer on your system.
-        ///                       Max 50 characters.
-        ///   - sourceToken: A token identifying the source of funds.
-        ///                  It can be a prepaid card token prefixed with `trm-` or user token prefixed with `usr-`.
-        ///   - destinationToken: A token identifying where the funds have been sent.
-        ///                       It is your merchant account token prefixed with `act-`.
         public init(amount: String, clientPaymentId: String, destinationToken: String, programToken: String) {
             self.amount = amount
             self.clientPaymentId = clientPaymentId

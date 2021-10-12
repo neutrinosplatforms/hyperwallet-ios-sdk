@@ -200,7 +200,7 @@ public final class Hyperwallet: NSObject {
                     c.resume(returning: paymentsList)
                 }
             }
-            httpTransaction.performRest(httpMethod: .post,
+            httpTransaction.performRest(httpMethod: .get,
                                         urlPath: "payments",
                                         payload: "",
                                         queryParam: queryParam,
