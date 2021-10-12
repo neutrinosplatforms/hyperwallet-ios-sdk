@@ -235,6 +235,22 @@ public final class Hyperwallet: NSObject {
                                     payload: account,
                                     completionHandler: completion)
     }
+    
+    public func createPayPalAccount(account: HyperwalletPayPalAccount) async throws -> HyperwalletPayPalAccount? {
+        return try await withCheckedThrowingContinuation({ c in
+            let completion = {(account: HyperwalletPayPalAccount?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: account)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .post,
+                                        urlPath: "users/%@/paypal-accounts",
+                                        payload: account,
+                                        completionHandler: completion)
+        })
+    }
 
     /// Creates a `HyperwalletTransfer` for the User associated with the authentication token returned from
     /// `HyperwalletAuthenticationTokenProvider.retrieveAuthenticationToken(_ : @escaping CompletionHandler)`.
@@ -775,6 +791,23 @@ public final class Hyperwallet: NSObject {
                                     payload: "",
                                     queryParam: queryParam,
                                     completionHandler: completion)
+    }
+    
+    public func listTransferMethods(queryParam: HyperwalletTransferMethodQueryParam? = nil) async throws -> HyperwalletPageList<HyperwalletTransferMethod>? {
+        return try await withCheckedThrowingContinuation({ c in
+            let completion = {(pageList: HyperwalletPageList<HyperwalletTransferMethod>?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: pageList)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "users/%@/transfer-methods",
+                                        payload: "",
+                                        queryParam: queryParam,
+                                        completionHandler: completion)
+        })
     }
 
     /// Returns the `HyperwalletPrepaidCard`
