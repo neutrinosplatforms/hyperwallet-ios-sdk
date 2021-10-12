@@ -139,7 +139,9 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation { c in
             let completion = {(user: HyperwalletUser?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
+                    debugPrint()
                 } else {
                     c.resume(returning: user)
                 }
@@ -157,6 +159,7 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation { c in
             let completion = {(payment: HyperwalletPayment?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
                 } else {
                     c.resume(returning: payment)
@@ -195,6 +198,7 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation { c in
             let completion = {(paymentsList: HyperwalletPageList<HyperwalletPayment>?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
                 } else {
                     c.resume(returning: paymentsList)
@@ -218,6 +222,7 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation { c in
             let completion = {(payment: HyperwalletPayment?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
                 } else {
                     c.resume(returning: payment)
@@ -323,6 +328,7 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation({ c in
             let completion = {(account: HyperwalletPayPalAccount?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
                 } else {
                     c.resume(returning: account)
@@ -621,6 +627,7 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation { c in
             let completion = { (account: HyperwalletPayPalAccount?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
                 } else {
                     c.resume(returning: account)
@@ -880,6 +887,7 @@ public final class Hyperwallet: NSObject {
         return try await withCheckedThrowingContinuation({ c in
             let completion = {(pageList: HyperwalletPageList<HyperwalletTransferMethod>?, error: HyperwalletErrorType?) in
                 if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
                     c.resume(throwing: error)
                 } else {
                     c.resume(returning: pageList)
