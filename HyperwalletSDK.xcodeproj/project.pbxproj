@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CE15A327160A3A00563220 /* HyperwalletPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE15A227160A3A00563220 /* HyperwalletPayment.swift */; };
+		04CE15A52716141000563220 /* HyperwalletPaymentQueryParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE15A42716141000563220 /* HyperwalletPaymentQueryParam.swift */; };
 		0733FE092277C191000FB92A /* HyperwalletPayPalAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733FE082277C191000FB92A /* HyperwalletPayPalAccount.swift */; };
 		0733FE2C2277C7F1000FB92A /* HyperwalletPayPalAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733FE2A2277C743000FB92A /* HyperwalletPayPalAccountTests.swift */; };
 		07B1FE6022C29BCD00F461D0 /* HyperwalletPrepaidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1FE5F22C29BCD00F461D0 /* HyperwalletPrepaidCard.swift */; };
@@ -161,6 +163,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04CE15A227160A3A00563220 /* HyperwalletPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPayment.swift; sourceTree = "<group>"; };
+		04CE15A42716141000563220 /* HyperwalletPaymentQueryParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPaymentQueryParam.swift; sourceTree = "<group>"; };
 		0733FE082277C191000FB92A /* HyperwalletPayPalAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPayPalAccount.swift; sourceTree = "<group>"; };
 		0733FE2A2277C743000FB92A /* HyperwalletPayPalAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPayPalAccountTests.swift; sourceTree = "<group>"; };
 		07B1FE5F22C29BCD00F461D0 /* HyperwalletPrepaidCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPrepaidCard.swift; sourceTree = "<group>"; };
@@ -324,6 +328,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04CE15A127160A1600563220 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				04CE15A227160A3A00563220 /* HyperwalletPayment.swift */,
+				04CE15A42716141000563220 /* HyperwalletPaymentQueryParam.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
 		2E6A04172577162E00244BE6 /* PaperCheck */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +583,7 @@
 		DB1A03E4225D3DE40080C8D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04CE15A127160A1600563220 /* Payments */,
 				B327ED7D23C66B520007EF58 /* Balance */,
 				DB1A03E5225D3DE40080C8D6 /* GraphQL */,
 				DB1A03F4225D3DE40080C8D6 /* Paging */,
@@ -880,6 +894,7 @@
 			files = (
 				4A77C703229BD74A00DA644D /* HyperwalletReceipt.swift in Sources */,
 				DB0AFDF32277725600ABEFFD /* HyperwalletUser.swift in Sources */,
+				04CE15A327160A3A00563220 /* HyperwalletPayment.swift in Sources */,
 				64D2493522BCB4A000561C14 /* HyperwalletTransfer.swift in Sources */,
 				DB1A03DF225D3DD80080C8D6 /* AuthenticationTokenDecoder.swift in Sources */,
 				DB1A0406225D3DE40080C8D6 /* HyperwalletBankAccount.swift in Sources */,
@@ -887,6 +902,7 @@
 				DB1A0401225D3DE40080C8D6 /* HyperwalletTransferMethodConfigurationQueries.swift in Sources */,
 				DB1A0402225D3DE40080C8D6 /* GraphQlQuery.swift in Sources */,
 				DB1A0403225D3DE40080C8D6 /* GraphQlResult.swift in Sources */,
+				04CE15A52716141000563220 /* HyperwalletPaymentQueryParam.swift in Sources */,
 				4A88E43E229D438700CD857B /* HyperwalletReceiptQueryParam.swift in Sources */,
 				DB1A03DC225D3DD80080C8D6 /* Configuration.swift in Sources */,
 				B327ED7F23C66B6B0007EF58 /* HyperwalletBalance.swift in Sources */,

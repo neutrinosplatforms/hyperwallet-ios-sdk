@@ -147,6 +147,89 @@ public final class Hyperwallet: NSObject {
             httpTransaction.performRest(httpMethod: .post, urlPath: "users", payload: user, isUnauthenticated: true, completionHandler: completion)
         }
     }
+            
+    /// Returns the `HyperwalletPayment` for the User associated with the new user
+    ///
+    /// - Parameters:
+    ///   - payment: the `HyperwalletPayment` to be created
+    /// - Returns: Returns the newly created `HyperwalletPayment`.
+    public func createPayment(payment: HyperwalletPayment) async throws -> HyperwalletPayment? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(payment: HyperwalletPayment?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: payment)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .post, urlPath: "payments", payload: payment, isUnauthenticated: true, completionHandler: completion)
+        }
+    }
+    
+    /// Returns the list of `HyperwalletPayment`s for the User associated with the authentication token
+    /// returned from
+    /// `HyperwalletAuthenticationTokenProvider.retrieveAuthenticationToken(_ : @escaping CompletionHandler)`,
+    /// or nil if non exist.
+    ///
+    /// Default filtering:
+    ///
+    /// * Offset: 0
+    /// * Limit: 10
+    /// * Created Before: N/A
+    /// * Created After: N/A
+    /// * Status: All
+    /// * Sort By: Created On
+    ///
+    /// The `completion: @escaping (HyperwalletPageList<HyperwalletPayment>?, HyperwalletErrorType?) -> Void` that
+    /// is passed in to this method invocation will receive the successful
+    /// response(HyperwalletPageList<HyperwalletPayment>?) or error(HyperwalletErrorType) from processing the
+    /// request.
+    ///
+    /// This function will request a new authentication token via `HyperwalletAuthenticationTokenProvider`
+    /// if the current one is expired or is about to expire.
+    ///
+    /// - Parameters:
+    ///   - queryParam: the ordering and filtering criteria
+    ///   - completion: the callback handler of responses from the Hyperwallet platform
+    public func listPayments(queryParam: HyperwalletPaymentQueryParam? = nil) async throws -> HyperwalletPageList<HyperwalletPayment>? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(paymentsList: HyperwalletPageList<HyperwalletPayment>?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: paymentsList)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .post,
+                                        urlPath: "payments",
+                                        payload: "",
+                                        queryParam: queryParam,
+                                        isUnauthenticated: true,
+                                        completionHandler: completion)
+        }
+    }
+    
+    /// Returns `HyperwalletPayment` for a given payment-token
+    ///
+    /// - Parameters:
+    ///   - payment: the `HyperwalletPayment` to be created
+    /// - Returns: Returns the newly created `HyperwalletPayment`.
+    public func retrivePayment(paymentToken: String) async throws -> HyperwalletPayment? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(payment: HyperwalletPayment?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: payment)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "payments/\(paymentToken)",
+                                        payload: "",
+                                        isUnauthenticated: true,
+                                        completionHandler: completion)
+        }
+    }
     
     /// Creates a `HyperwalletBankAccount` for the User associated with the authentication token returned from
     /// `HyperwalletAuthenticationTokenProvider.retrieveAuthenticationToken(_ : @escaping CompletionHandler)`.
