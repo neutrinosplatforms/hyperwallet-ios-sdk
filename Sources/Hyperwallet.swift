@@ -884,7 +884,7 @@ public final class Hyperwallet: NSObject {
     }
     
     public func listTransferMethods(queryParam: HyperwalletTransferMethodQueryParam? = nil) async throws -> HyperwalletPageList<HyperwalletTransferMethod>? {
-        return try await withCheckedThrowingContinuation({ c in
+        return try? await withCheckedThrowingContinuation({ c in
             let completion = {(pageList: HyperwalletPageList<HyperwalletTransferMethod>?, error: HyperwalletErrorType?) in
                 if let error = error {
                     debugPrint("\(#function) Error: \(error)")
