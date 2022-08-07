@@ -174,6 +174,12 @@ public enum HyperwalletErrorType: Error, LocalizedError {
     }
 }
 
+extension HyperwalletErrorType: CustomStringConvertible {
+    public var description: String {
+        self.localizedDescription
+    }
+}
+
 /// The `HyperwalletAuthenticationErrorType` is the authentication error type returned By Hyperwallet SDK.
 public enum HyperwalletAuthenticationErrorType: LocalizedError {
     /// - expired: Returned when the authenticated session is expired

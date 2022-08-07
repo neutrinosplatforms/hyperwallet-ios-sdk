@@ -21,7 +21,12 @@ import UIKit
 /// Representation of the Hyperwallet's user.
 @objcMembers
 public class HyperwalletUser: NSObject, Codable {
+    
     private var storage = [String: AnyCodable]()
+    
+    public var userStorage: [String: Any] {
+        return storage
+    }
 
     /// Representation of the user field type.
     public enum UserField: String {
@@ -449,6 +454,31 @@ public class HyperwalletUser: NSObject, Codable {
     public final class Builder {
         private var storage = [String: AnyCodable]()
 
+        public init(){}
+        public init(clientUserId: String,
+                    profileType: ProfileType,
+                    programToken: String) {
+            storage[UserField.clientUserId.rawValue] = AnyCodable(value: clientUserId)
+            storage[UserField.profileType.rawValue] = AnyCodable(value: profileType.rawValue)
+            storage[UserField.programToken.rawValue] = AnyCodable(value: programToken)
+        }
+        
+        /// Sets the user's ID.
+        ///
+        /// - Parameter clientUserId: The user's ID
+        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
+        public func clientUserId(_ clientUserId: String) -> Builder {
+            setField(key: UserField.clientUserId, value: clientUserId)
+        }
+        
+        /// Sets the user's profile type.
+        ///
+        /// - Parameter profileType: The user's profile type
+        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
+        public func profileType(_ profileType: String) -> Builder {
+            setField(key: UserField.profileType, value: profileType)
+        }
+        
         /// Sets the user's street address.
         ///
         /// - Parameter addressLine1: The user's street address
@@ -585,11 +615,11 @@ public class HyperwalletUser: NSObject, Codable {
         public func city(_ city: String) -> Builder {
             setField(key: UserField.city, value: city)
         }
-
+        
         /// Sets the user's country.
         ///
         /// - Parameter country: The user's country.
-        /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
+        /// - Returns: a self reference of `HyperwalletUser.Builder` instance..
         public func country(_ country: String) -> Builder {
             setField(key: UserField.country, value: country)
         }
@@ -602,7 +632,7 @@ public class HyperwalletUser: NSObject, Codable {
             setField(key: UserField.countryOfBirth, value: countryOfBirth)
         }
 
-        /// Sets the user's country of citizenship or nationality.
+        /// Sets the user's country of citizenship or nationality...
         ///
         /// - Parameter countryOfNationality: The user's country of citizenship or nationality.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
@@ -661,7 +691,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// - Parameter firstName: The user's first name.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
         public func firstName(_ firstName: String) -> Builder {
-            setField(key: UserField.employerId, value: firstName)
+            setField(key: UserField.firstName, value: firstName)
         }
 
         /// Sets the user's gender.
@@ -677,7 +707,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// - Parameter governmentId: The user's government ID number, such as a Social Security Number.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
         public func governmentId(_ governmentId: String) -> Builder {
-            setField(key: UserField.employerId, value: governmentId)
+            setField(key: UserField.governmentId, value: governmentId)
         }
 
         /// Sets the user's government ID type.
@@ -757,7 +787,7 @@ public class HyperwalletUser: NSObject, Codable {
         /// - Parameter programToken: The unique identifier for the program to which the user will belong.
         /// - Returns: a self reference of `HyperwalletUser.Builder` instance.
         public func programToken(_ programToken: String) -> Builder {
-            setField(key: UserField.postalCode, value: programToken)
+            setField(key: UserField.programToken, value: programToken)
         }
 
         /// Sets the field value based on the `UserField`

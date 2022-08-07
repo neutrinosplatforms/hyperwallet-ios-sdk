@@ -68,7 +68,12 @@ internal enum TransactionType {
             throw ErrorTypeHelper.invalidUrl()
         }
         var request = URLRequest(url: url)
-        request.addValue("Bearer " + configuration.authorization, forHTTPHeaderField: "Authorization")
+        if configuration.isUnauthenticated {
+            request.addValue(configuration.authorization, forHTTPHeaderField: "Authorization")
+        } else {
+            request.addValue("Bearer " + configuration.authorization, forHTTPHeaderField: "Authorization")
+        }
+        
         request.httpMethod = method.rawValue
         if httpBody != nil, (method == .post || method == .put) {
             let encoder = JSONEncoder()

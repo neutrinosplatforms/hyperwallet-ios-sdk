@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CE15A327160A3A00563220 /* HyperwalletPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE15A227160A3A00563220 /* HyperwalletPayment.swift */; };
+		04CE15A52716141000563220 /* HyperwalletPaymentQueryParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CE15A42716141000563220 /* HyperwalletPaymentQueryParam.swift */; };
 		0733FE092277C191000FB92A /* HyperwalletPayPalAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733FE082277C191000FB92A /* HyperwalletPayPalAccount.swift */; };
 		0733FE2C2277C7F1000FB92A /* HyperwalletPayPalAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733FE2A2277C743000FB92A /* HyperwalletPayPalAccountTests.swift */; };
 		07B1FE6022C29BCD00F461D0 /* HyperwalletPrepaidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1FE5F22C29BCD00F461D0 /* HyperwalletPrepaidCard.swift */; };
@@ -47,8 +49,7 @@
 		980B9AE7251C0A2400653D1C /* PrepaidCardResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 980B9AE5251C052600653D1C /* PrepaidCardResponse.json */; };
 		980C15DB2273BF91004C60D6 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 980C15DA2273BF91004C60D6 /* CHANGELOG.md */; };
 		980C15F12273D1FA004C60D6 /* ListBankCardResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = DBCA37A6225D6D1700CD4137 /* ListBankCardResponse.json */; };
-		980E79402613B68E00F0834B /* Hippolyte.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8C499225E014E30062A440 /* Hippolyte.xcframework */; };
-		98101DC42238A2F000BA04CA /* HyperwalletSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98101DBA2238A2F000BA04CA /* HyperwalletSDK.framework */; };
+		A8E93F5726EBBEAF00A31CEA /* Hippolyte.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E93F5626EBBEAF00A31CEA /* Hippolyte.framework */; };
 		B062E353E292414C07C70355 /* HyperwalletPaperCheckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062EB9A428EB097C6B5B4FC /* HyperwalletPaperCheckTests.swift */; };
 		B062E601D8A9A6E7FCC498F7 /* PaperCheckErrorResponseWithMissingStateProvince.json in Resources */ = {isa = PBXBuildFile; fileRef = B062EC1CDD525FA26E0A7ED3 /* PaperCheckErrorResponseWithMissingStateProvince.json */; };
 		B062EA1444CB4994B8D9AA73 /* ListPaperCheckResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = B062EB32004F6CDC55028D37 /* ListPaperCheckResponse.json */; };
@@ -162,6 +163,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04CE15A227160A3A00563220 /* HyperwalletPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPayment.swift; sourceTree = "<group>"; };
+		04CE15A42716141000563220 /* HyperwalletPaymentQueryParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPaymentQueryParam.swift; sourceTree = "<group>"; };
 		0733FE082277C191000FB92A /* HyperwalletPayPalAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPayPalAccount.swift; sourceTree = "<group>"; };
 		0733FE2A2277C743000FB92A /* HyperwalletPayPalAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPayPalAccountTests.swift; sourceTree = "<group>"; };
 		07B1FE5F22C29BCD00F461D0 /* HyperwalletPrepaidCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletPrepaidCard.swift; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 		98101DBE2238A2F000BA04CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98101DC32238A2F000BA04CA /* HyperwalletSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HyperwalletSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98101DCA2238A2F000BA04CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8E93F5626EBBEAF00A31CEA /* Hippolyte.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Hippolyte.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B062E2EA3710B0D9432C055C /* ListPrepaidCardBalancesResponseSuccess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ListPrepaidCardBalancesResponseSuccess.json; sourceTree = "<group>"; };
 		B062E470A67F25DDA9FAA711 /* PaperCheckIndividualResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PaperCheckIndividualResponse.json; sourceTree = "<group>"; };
 		B062EB32004F6CDC55028D37 /* ListPaperCheckResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ListPaperCheckResponse.json; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 		DB1A0420225D571A0080C8D6 /* AuthenticationTokenGeneratorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenGeneratorMock.swift; sourceTree = "<group>"; };
 		DB1A0421225D571B0080C8D6 /* AuthenticationProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationProviderMock.swift; sourceTree = "<group>"; };
 		DB2A3B082261D2DC0049F891 /* HyperwalletSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HyperwalletSDK.h; sourceTree = "<group>"; };
+		DB2A3B0D2261D4260049F891 /* Hippolyte.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hippolyte.framework; path = Carthage/Build/iOS/Hippolyte.framework; sourceTree = "<group>"; };
 		DB3151CE22780AA300FC9F8E /* UserIndividualResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserIndividualResponse.json; sourceTree = "<group>"; };
 		DB45190E22DD00A00022BD1F /* HyperwalletTransferMethodConfigurationFieldQueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperwalletTransferMethodConfigurationFieldQueryTests.swift; sourceTree = "<group>"; };
 		DB764E8F22782D890053BB91 /* UserBusinessResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserBusinessResponse.json; sourceTree = "<group>"; };
@@ -316,14 +321,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				980E79402613B68E00F0834B /* Hippolyte.xcframework in Frameworks */,
-				98101DC42238A2F000BA04CA /* HyperwalletSDK.framework in Frameworks */,
+				A8E93F5726EBBEAF00A31CEA /* Hippolyte.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04CE15A127160A1600563220 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				04CE15A227160A3A00563220 /* HyperwalletPayment.swift */,
+				04CE15A42716141000563220 /* HyperwalletPaymentQueryParam.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
 		2E6A04172577162E00244BE6 /* PaperCheck */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +583,7 @@
 		DB1A03E4225D3DE40080C8D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04CE15A127160A1600563220 /* Payments */,
 				B327ED7D23C66B520007EF58 /* Balance */,
 				DB1A03E5225D3DE40080C8D6 /* GraphQL */,
 				DB1A03F4225D3DE40080C8D6 /* Paging */,
@@ -697,7 +711,9 @@
 		DBE45605225F3D1A000C9A0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8E93F5626EBBEAF00A31CEA /* Hippolyte.framework */,
 				FD8C499225E014E30062A440 /* Hippolyte.xcframework */,
+				DB2A3B0D2261D4260049F891 /* Hippolyte.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -724,7 +740,6 @@
 				98101DB62238A2F000BA04CA /* Sources */,
 				98101DB72238A2F000BA04CA /* Frameworks */,
 				98101DB82238A2F000BA04CA /* Resources */,
-				DBCA37C3225E52DA00CD4137 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -760,7 +775,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Hyperwallet Systems Inc";
 				TargetAttributes = {
 					98101DB92238A2F000BA04CA = {
@@ -872,27 +887,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		DBCA37C3225E52DA00CD4137 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\nset -x\n\nif ! which swiftlint > /dev/null; then\necho \"warning: SwiftLint is not installed. To install run `brew install SwiftLint`\"\nelse\nswiftlint autocorrect\nswiftlint\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		98101DB62238A2F000BA04CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -900,6 +894,7 @@
 			files = (
 				4A77C703229BD74A00DA644D /* HyperwalletReceipt.swift in Sources */,
 				DB0AFDF32277725600ABEFFD /* HyperwalletUser.swift in Sources */,
+				04CE15A327160A3A00563220 /* HyperwalletPayment.swift in Sources */,
 				64D2493522BCB4A000561C14 /* HyperwalletTransfer.swift in Sources */,
 				DB1A03DF225D3DD80080C8D6 /* AuthenticationTokenDecoder.swift in Sources */,
 				DB1A0406225D3DE40080C8D6 /* HyperwalletBankAccount.swift in Sources */,
@@ -907,6 +902,7 @@
 				DB1A0401225D3DE40080C8D6 /* HyperwalletTransferMethodConfigurationQueries.swift in Sources */,
 				DB1A0402225D3DE40080C8D6 /* GraphQlQuery.swift in Sources */,
 				DB1A0403225D3DE40080C8D6 /* GraphQlResult.swift in Sources */,
+				04CE15A52716141000563220 /* HyperwalletPaymentQueryParam.swift in Sources */,
 				4A88E43E229D438700CD857B /* HyperwalletReceiptQueryParam.swift in Sources */,
 				DB1A03DC225D3DD80080C8D6 /* Configuration.swift in Sources */,
 				B327ED7F23C66B6B0007EF58 /* HyperwalletBalance.swift in Sources */,
@@ -1048,10 +1044,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1108,7 +1103,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1135,7 +1130,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1147,7 +1142,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TAG_VERSION = "1.0.0-beta16";
+				TAG_VERSION = "1.0.0-beta09";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1166,7 +1161,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1177,7 +1172,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TAG_VERSION = "1.0.0-beta16";
+				TAG_VERSION = "1.0.0-beta09";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1190,12 +1185,8 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1217,12 +1208,8 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

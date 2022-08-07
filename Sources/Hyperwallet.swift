@@ -69,12 +69,45 @@ public final class Hyperwallet: NSObject {
     /// it tries to fetch the configuration object again and returns it else error
     ///
     /// - Parameter completion: the callback handler of responses from the Hyperwallet platform
+    @available(*, deprecated, message: "Prefer async alternative instead")
     public func getConfiguration(completion: @escaping (Configuration?, HyperwalletErrorType?) -> Void ) {
+        Task {
+            do {
+                let result = try await getConfiguration()
+                completion(result, nil)
+            } catch {
+                completion(nil, (error as! HyperwalletErrorType))
+            }
+        }
+    }
+    
+    
+    public func getConfiguration() async throws -> Configuration {
         if let configuration = httpTransaction.configuration {
-            completion(configuration, nil)
+            return configuration
         } else {
-            provider.retrieveAuthenticationToken(
-                completionHandler: retrieveAuthenticationTokenResponseHandler(completion: completion))
+            return try await withCheckedThrowingContinuation { continuation in
+                let completion = {(authenticationToken: String?, error: Error?) in
+                    guard error == nil else {
+                        continuation.resume(throwing: ErrorTypeHelper.authenticationError(
+                            message: "Error occured while retrieving authentication token",
+                            for: error as? HyperwalletAuthenticationErrorType ?? HyperwalletAuthenticationErrorType
+                                .unexpected("Authentication token cannot be retrieved"))
+                        )
+                        return
+                    }
+                    do {
+                        let configuration = try AuthenticationTokenDecoder.decode(from: authenticationToken)
+                        self.httpTransaction.configuration = configuration
+                        continuation.resume(returning: configuration)
+                    } catch {
+                        if let error = error as? HyperwalletErrorType {
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                }
+                provider.retrieveAuthenticationToken(completionHandler: completion)
+            }
         }
     }
 
@@ -97,6 +130,112 @@ public final class Hyperwallet: NSObject {
                                     completionHandler: completion)
     }
 
+    /// Returns the `HyperwalletUser` for the User associated with the new user
+    ///
+    /// - Parameters:
+    ///   - user: the `HyperwalletUser` to be created
+    /// - Returns: Returns the newly created `HyperwalletUser`.
+    public func createUser(user: HyperwalletUser) async throws -> HyperwalletUser? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(user: HyperwalletUser?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                    debugPrint()
+                } else {
+                    c.resume(returning: user)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .post, urlPath: "users", payload: user, isUnauthenticated: true, completionHandler: completion)
+        }
+    }
+            
+    /// Returns the `HyperwalletPayment` for the User associated with the new user
+    ///
+    /// - Parameters:
+    ///   - payment: the `HyperwalletPayment` to be created
+    /// - Returns: Returns the newly created `HyperwalletPayment`.
+    public func createPayment(payment: HyperwalletPayment) async throws -> HyperwalletPayment? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(payment: HyperwalletPayment?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: payment)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .post, urlPath: "payments", payload: payment, isUnauthenticated: true, completionHandler: completion)
+        }
+    }
+    
+    /// Returns the list of `HyperwalletPayment`s for the User associated with the authentication token
+    /// returned from
+    /// `HyperwalletAuthenticationTokenProvider.retrieveAuthenticationToken(_ : @escaping CompletionHandler)`,
+    /// or nil if non exist.
+    ///
+    /// Default filtering:
+    ///
+    /// * Offset: 0
+    /// * Limit: 10
+    /// * Created Before: N/A
+    /// * Created After: N/A
+    /// * Status: All
+    /// * Sort By: Created On
+    ///
+    /// The `completion: @escaping (HyperwalletPageList<HyperwalletPayment>?, HyperwalletErrorType?) -> Void` that
+    /// is passed in to this method invocation will receive the successful
+    /// response(HyperwalletPageList<HyperwalletPayment>?) or error(HyperwalletErrorType) from processing the
+    /// request.
+    ///
+    /// This function will request a new authentication token via `HyperwalletAuthenticationTokenProvider`
+    /// if the current one is expired or is about to expire.
+    ///
+    /// - Parameters:
+    ///   - queryParam: the ordering and filtering criteria
+    ///   - completion: the callback handler of responses from the Hyperwallet platform
+    public func listPayments(queryParam: HyperwalletPaymentQueryParam? = nil) async throws -> HyperwalletPageList<HyperwalletPayment>? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(paymentsList: HyperwalletPageList<HyperwalletPayment>?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: paymentsList)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "payments",
+                                        payload: "",
+                                        queryParam: queryParam,
+                                        isUnauthenticated: true,
+                                        completionHandler: completion)
+        }
+    }
+    
+    /// Returns `HyperwalletPayment` for a given payment-token
+    ///
+    /// - Parameters:
+    ///   - payment: the `HyperwalletPayment` to be created
+    /// - Returns: Returns the newly created `HyperwalletPayment`.
+    public func retrivePayment(paymentToken: String) async throws -> HyperwalletPayment? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = {(payment: HyperwalletPayment?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: payment)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "payments/\(paymentToken)",
+                                        payload: "",
+                                        isUnauthenticated: true,
+                                        completionHandler: completion)
+        }
+    }
+    
     /// Creates a `HyperwalletBankAccount` for the User associated with the authentication token returned from
     /// `HyperwalletAuthenticationTokenProvider.retrieveAuthenticationToken(_ : @escaping CompletionHandler)`.
     ///
@@ -183,6 +322,23 @@ public final class Hyperwallet: NSObject {
                                     urlPath: "users/%@/paypal-accounts",
                                     payload: account,
                                     completionHandler: completion)
+    }
+    
+    public func createPayPalAccount(account: HyperwalletPayPalAccount) async throws -> HyperwalletPayPalAccount? {
+        return try await withCheckedThrowingContinuation({ c in
+            let completion = {(account: HyperwalletPayPalAccount?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: account)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .post,
+                                        urlPath: "users/%@/paypal-accounts",
+                                        payload: account,
+                                        completionHandler: completion)
+        })
     }
 
     /// Creates a `HyperwalletTransfer` for the User associated with the authentication token returned from
@@ -466,6 +622,23 @@ public final class Hyperwallet: NSObject {
                                     payload: "",
                                     completionHandler: completion)
     }
+    
+    public func getPayPalAccount(transferMethodToken: String) async throws -> HyperwalletPayPalAccount? {
+        return try await withCheckedThrowingContinuation { c in
+            let completion = { (account: HyperwalletPayPalAccount?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: account)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "users/%@/paypal-accounts/\(transferMethodToken)",
+                                        payload: "",
+                                        completionHandler: completion)
+        }
+    }
 
     /// Returns the `HyperwalletPrepaidCard` linked to the transfer method token specified, or nil if none exists.
     ///
@@ -708,6 +881,24 @@ public final class Hyperwallet: NSObject {
                                     payload: "",
                                     queryParam: queryParam,
                                     completionHandler: completion)
+    }
+    
+    public func listTransferMethods(queryParam: HyperwalletTransferMethodQueryParam? = nil) async throws -> HyperwalletPageList<HyperwalletTransferMethod>? {
+        return try? await withCheckedThrowingContinuation({ c in
+            let completion = {(pageList: HyperwalletPageList<HyperwalletTransferMethod>?, error: HyperwalletErrorType?) in
+                if let error = error {
+                    debugPrint("\(#function) Error: \(error)")
+                    c.resume(throwing: error)
+                } else {
+                    c.resume(returning: pageList)
+                }
+            }
+            httpTransaction.performRest(httpMethod: .get,
+                                        urlPath: "users/%@/transfer-methods",
+                                        payload: "",
+                                        queryParam: queryParam,
+                                        completionHandler: completion)
+        })
     }
 
     /// Returns the `HyperwalletPrepaidCard`
